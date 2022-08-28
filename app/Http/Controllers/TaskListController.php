@@ -9,7 +9,10 @@ class TaskListController extends Controller
 {
     public function index()
     {
-        return view('todolist');
+        $todolist = TaskList::where('process', 'waiting')->get();
+        $inprogresslist = TaskList::where('process', 'inprogress')->get();
+        $donelist = TaskList::where('process', 'done')->get();
+        return view('todolist', compact('todolist', 'inprogresslist', 'donelist'));
     }
 
     public function create(Request $request)
@@ -21,19 +24,33 @@ class TaskListController extends Controller
         return redirect()->back();
     }
     
-    public function listUpdate($id)
+    public function listUpdate(Request $request, $id)
     {
-
+        $task = TaskList::find($id);
+        // dd($task->id);
+        // dd($request->all());
+        $task->update([
+            "process" => $request->process,
+        ]);
+        return redirect()->back();
     }
 
-    public function progressUpdate($id)
+    public function progressUpdate(Request $request, $id)
     {
-
+        $task = TaskList::find($id);
+        $task->update([
+            "process" => $request->process,
+        ]);
+        return redirect()->back();
     }
 
-    public function doneUpdate($id)
+    public function doneUpdate(Request $request, $id)
     {
-
+        $task = TaskList::find($id);
+        $task->update([
+            "process" => $request->process,
+        ]);
+        return redirect()->back();
     }
 
     public function delete($id)
