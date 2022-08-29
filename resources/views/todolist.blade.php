@@ -39,9 +39,9 @@
                             <div class="card-body">
                                 @foreach($todolist as $key=>$list)
                                 <form action="{{route('list.update', $list->id)}}" method="get">
-                                    <span>{{$key}}. {{$list->task}} </span>
+                                    <span>{{$key+1}}.  {{$list->task}} </span>
                                     <select name="process" class="form-select" aria-label="">
-                                        <option selected disabled>Process</option>
+                                        <option selected disabled>Progress || Done</option>
                                         <option value="inprogress">In progress</option>
                                         <option value="done">Done</option>
                                     </select>
@@ -59,10 +59,10 @@
                             <div class="card-body">
                                 @foreach($inprogresslist as $key=>$list)
                                 <form action="{{route('progress.update', $list->id)}}" method="get">
-                                    <span>{{$key}}. {{$list->task}} </span>
+                                    <span>{{$key+1}}.  {{$list->task}} </span>
                                     <select name="process" class="form-select" aria-label="">
                                         <option selected disabled>Process</option>
-                                        <option value="waiting">Waiting</option>
+                                        <option value="waiting">Todo List</option>
                                         <option value="done">Done</option>
                                     </select>
                                     <button type="submit" class="btn btn-sm">Move</button>
@@ -79,11 +79,11 @@
                             <div class="card-body">
                             @foreach($donelist as $key=>$list)
                                 <form action="{{route('done.update', $list->id)}}" method="get">
-                                    <span>{{$key}}. {{$list->task}} </span>
+                                    <span>{{$key+1}}.  {{$list->task}} </span>
                                     <select name="process" class="form-select" aria-label="">
-                                        <option selected disabled>Process</option>
+                                        <option selected disabled>Inprogress || Todo List</option>
                                         <option value="inprogress">In progress</option>
-                                        <option value="waiting">Waiting</option>
+                                        <option value="waiting">Todo List</option>
                                     </select>
                                     <button type="submit" class="btn btn-sm">Move</button>
                                 </form>
