@@ -14,19 +14,19 @@
 <body>
     <div class="row my-5">
         <div class="col-md-12 col-lg-12 my-5">
-            <div class="container border border-info m-l-3 m-r-3 my-5">
+            <div class="container m-l-3 m-r-3 my-5">
                 <h3 class="text-success text-center my-2 ">Todo List</h3>
                 <div class="row">
                     <div class="col-md-12 col-lg-12 my-2">
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 "></div>
-                            <div class="col-md-6 col-lg-6 d-flex justify-content-center my-5">
+                            <div class="col-md-2 col-lg-2 "></div>
+                            <div class="col-md-8 col-lg-8 d-flex justify-content-center my-5">
                                 <form action="{{route('list.create')}}" method="get">
-                                    <input type="text" name="task" id="task" placeholder="Enter your Task">
-                                    <button type="submit" class="btn btn-success btn-sm m-l-3">Create Task</button>
+                                    <input style="width: 270px;" type="text" name="task" id="task" placeholder="Enter your Task">
+                                    <button type="submit" class="btn btn-warning btn-md m-l-3">Add</button>
                                 </form>
                             </div>
-                            <div class="col-md-3 col-lg-3 "></div>
+                            <div class="col-md-2 col-lg-2 "></div>
                         </div>
                     </div>
                 </div>
@@ -39,12 +39,13 @@
                             <div class="card-body">
                                 @foreach($todolist as $key=>$list)
                                 <form action="{{route('list.update', $list->id)}}" method="get">
-                                    <span>{{$key+1}}.  {{$list->task}} </span>
-                                    <select name="process" class="form-select" aria-label="">
-                                        <option selected disabled>Progress || Done</option>
-                                        <option value="inprogress">In progress</option>
-                                        <option value="done">Done</option>
-                                    </select>
+                                    <div class="d-inline-flex my-2">
+                                        <span class="p-2">{{$list->task}} </span>
+                                        <select style="width:50px;" name="process" class="form-select" aria-label="">
+                                            <option value="inprogress">In progress</option>
+                                            <option value="done">Done</option>
+                                        </select>
+                                    </div>
                                     <button type="submit" class="btn btn-sm">Move</button>
                                 </form>
                                 @endforeach
@@ -59,13 +60,14 @@
                             <div class="card-body">
                                 @foreach($inprogresslist as $key=>$list)
                                 <form action="{{route('progress.update', $list->id)}}" method="get">
-                                    <span>{{$key+1}}.  {{$list->task}} </span>
-                                    <select name="process" class="form-select" aria-label="">
-                                        <option selected disabled>Process</option>
-                                        <option value="waiting">Todo List</option>
-                                        <option value="done">Done</option>
-                                    </select>
-                                    <button type="submit" class="btn btn-sm">Move</button>
+                                    <div class="d-inline-flex my-2">
+                                        <span class="p-2">{{$list->task}} </span>
+                                        <select style="width:50px;" name="process" class="form-select" aria-label="">
+                                            <option value="waiting">Todo</option>
+                                            <option value="done">Done</option>
+                                        </select>
+                                    </div>
+                                        <button type="submit" class="btn btn-sm">Move</button>
                                 </form>
                                 @endforeach
                             </div>
@@ -79,12 +81,13 @@
                             <div class="card-body">
                             @foreach($donelist as $key=>$list)
                                 <form action="{{route('done.update', $list->id)}}" method="get">
-                                    <span>{{$key+1}}.  {{$list->task}} </span>
-                                    <select name="process" class="form-select" aria-label="">
-                                        <option selected disabled>Inprogress || Todo List</option>
-                                        <option value="inprogress">In progress</option>
-                                        <option value="waiting">Todo List</option>
-                                    </select>
+                                    <div class="d-inline-flex my-2">
+                                        <span class="p-2">{{$list->task}} </span>
+                                        <select style="width:50px;" name="process" class="form-select" aria-label="">
+                                            <option value="inprogress">In progress</option>
+                                            <option value="waiting">Todo</option>
+                                        </select>
+                                    </div>
                                     <button type="submit" class="btn btn-sm">Move</button>
                                 </form>
                                 @endforeach
